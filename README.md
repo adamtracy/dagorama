@@ -40,13 +40,15 @@ graph where A is the start vertex:
 ## Installation, running
 
 There are 2 ways to install this project
-* Locally on a system set up for development already having `python3` and `make` build tools.  This is driven by a minimally configured `Makefile` that will build a VE in `./venv`:
+### Locally
+For systems set up for development already having `python3` and `make` build tools.  This is driven by a minimally configured `Makefile` that will build a VE in `./venv`.  This was handy for me to quickly get going.
 ```bash
 make test;
 make run-workflow;
 make clean # removes all installed goods
 ```
-* `docker` for systems having a docker service installed and runnning.  
+### Docker
+This is for systems having a docker service installed and runnning.  While Docker could be thought of as overkill for this exercise, I do think it's helpful to have productionized deployment in mind from the start of a new project
 ```bash
 docker-compose up tests --build  # Builds the appliation and runs tests defined in ./tests
 docker-compose up app --build  # Builds the appliation and runs the main.py
