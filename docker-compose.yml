@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    volumes:
+      - ./output:/usr/src/app/output
+    environment:
+      - INPUT_DIR=/usr/src/app/tests/data
+      - OUTPUT_DIR=/usr/src/app/output
+    command: ["python", "main.py", "--run_workflows"]
+  tests:
+    build: .
+    volumes:
+      - ./output:/usr/src/app/output
+    environment:
+      - INPUT_DIR=/usr/src/app/tests/data
+      - OUTPUT_DIR=/usr/src/app/output
+    command: ["pytest", "-v"]
+    

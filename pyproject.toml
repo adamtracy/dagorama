@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "critical-path-project"
+version = "0.1.0"
+description = ""
+authors = ["adam tracy <adamneiltracy@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+graphviz = "^0.19.1"
+ipython = "^8.0"
+pytest = "^8.1"
+pytest-pythonpath = "^0.7"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
