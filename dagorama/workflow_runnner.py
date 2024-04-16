@@ -11,8 +11,9 @@ from dagorama.model import Node, Edge
 
 def _process(edge: Edge) -> None:
     # this function simulates processing a node with a delay equal to the edge weight
-    time.sleep(edge.weight)  
-    run_node(edge.destination)  
+    time.sleep(edge.weight)
+    run_node(edge.destination)
+
 
 def run_node(node: Node) -> None:
     # Recursively process a given node and all its children
@@ -29,15 +30,16 @@ def run_node(node: Node) -> None:
     for thread in threads:
         thread.join()
 
+
 def run_workflows() -> None:
     logging.info("Starting to process files")
     logging.info(f"Input: {INPUT_DIR}")
     logging.info(f"Output: {OUTPUT_DIR}")
     for file_name in os.listdir(INPUT_DIR):
         file_path = os.path.join(INPUT_DIR, file_name)
-        if file_path.endswith('.json'):
-            print(f"Processing file: {file_name}")
-            with open(file_path, 'r') as file:
+        if file_path.endswith(".json"):
+            logging.info(f"Processing file: {file_name}")
+            with open(file_path, "r") as file:
                 raw_data = json.load(file)
                 graph = parse_graph(raw_data)
                 run_node(graph.root)

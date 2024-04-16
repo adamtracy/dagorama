@@ -23,7 +23,7 @@ def parse_graph(raw_data: dict) -> Graph:
     graph = Graph()
     for node_id, node_data in raw_data.items():
         node = graph.get_node(node_id)
-        if not node: 
+        if not node:
             node = graph.add_node(node_id, is_root=node_data.get("start", False))
         else:
             is_root = node_data.get("start", False)
@@ -42,23 +42,26 @@ def parse_graph(raw_data: dict) -> Graph:
     return graph
 
 
-def viz_dag(graph: Graph, file_name):
+def viz_dag(graph: Graph, file_name) -> None:
     dot = Digraph(comment=f"DAG {file_name}")
     for node in graph.nodes.values():
         dot.node(node.id, node.id)
         for edge in node.edges_out:
             edge_color = "black"
-            dot.edge(node.id, edge.destination.id, label=str(edge.weight), color=edge_color)
+            dot.edge(
+                node.id, edge.destination.id, label=str(edge.weight), color=edge_color
+            )
 
-    output_file = os.path.join(OUTPUT_DIR, f'{file_name}')
-    dot.render(output_file, format='png', cleanup=True)
+    output_file = os.path.join(OUTPUT_DIR, f"{file_name}")
+    dot.render(output_file, format="png", cleanup=True)
 
-def viz_graphs():
+
+def viz_graphs() -> None:
     # just render input data
     for file_name in os.listdir(INPUT_DIR):
-        if file_name.endswith('.json'):
+        if file_name.endswith(".json"):
             try:
-                with open(os.path.join(INPUT_DIR, file_name), 'r') as file:
+                with open(os.path.join(INPUT_DIR, file_name), "r") as file:
                     raw_data = json.load(file)
                     graph = parse_graph(raw_data)
                     viz_dag(graph, file_name.split(".")[0])
@@ -68,4 +71,3 @@ def viz_graphs():
 
 if __name__ == "__main__":
     viz_graphs()
-
