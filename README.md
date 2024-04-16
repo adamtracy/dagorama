@@ -14,10 +14,10 @@ graph where A is the start vertex:
 
 ## Approach
 
-* First model the data using python classes since this would make the application code simpler to read and debug.  It also allows us to tie node state with workkflow running so that we can track what nodes were actually getting processed.  Specialized Exception classes help identify error conditions that could arise while parsing input.
+* First model the data using python classes since this would make the application code simpler to read and debug.  It also allows us to tie node state with workflow running so that we can track what nodes were actually getting processed (See `Node.run_count`). Specialized Exception classes help identify error conditions that could arise while parsing input.
 * Python's `threading` module helps simulate the DAG running.
 * Test cases are included to exercise the parsing and processing code using `pytest`
-* A visualization feature was included to make it easier to understand/validate the DAGs
+* A supplemental visualization feature was included to make it easier to understand/validate the DAGs
 
 ## Project Layout
 ```
@@ -28,33 +28,27 @@ graph where A is the start vertex:
 │   ├── __init__.py
 │   ├── io.py  # File parsing, graph rendering
 │   ├── model.py  # Node, Edge, Graph data models
-│   └── workflow_runnner.py # The application code
+│   └── workflow_runnner.py # The application code (accesssed by main.py)
 ├── docker-compose.yml
 ├── docs
 ├── install.sh
-├── main.py  # Entrypoint into the system
+├── main.py  # Command line entrypoint into the system for running the workflows
 ├── output
 ├── pyproject.toml
-└── tests 
+└── tests  # test cases using pytest
 ```
-## Installation
+## Installation, running
 
-There's 2 ways to install this project
-* Locally on a system set up for development already having `python3` and `make` build tools.  This is driven by a minimally configured `Makefile`:
+There are 2 ways to install this project
+* Locally on a system set up for development already having `python3` and `make` build tools.  This is driven by a minimally configured `Makefile` that will build a VE in `./venv`:
 ```bash
-make install-local;
 make test;
 make run-workflow;
 make clean # removes all installed goods
 ```
 * `docker` for systems having a docker service installed and runnning.  
 ```bash
-docker-compose up tests --build
+docker-compose up tests --build  # Builds the appliation and runs tests defined in ./tests
+docker-compose up app --build  # Builds the appliation and runs the main.py
 ```
 
-## Runing
-The `./tests/data/` directory containes some example JSON files encoding DAGs.  By running the below command, the applicaiton will create PNG files in the `./output` directory highlighting the costliest path(s) through the given DAGs
-```
-docker-compose up --build
-```
-E.g.
