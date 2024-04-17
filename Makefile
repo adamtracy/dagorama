@@ -6,6 +6,9 @@ venv:
 run-local: venv
 	. venv/bin/activate && python main.py --run_workflows
 
+viz-local: venv
+	. venv/bin/activate && python main.py --viz_graphs
+
 test-local: venv
 	. venv/bin/activate && pytest
 

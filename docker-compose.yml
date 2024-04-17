@@ -8,6 +8,27 @@ services:
       - INPUT_DIR=/usr/src/app/tests/data
       - OUTPUT_DIR=/usr/src/app/output
     command: ["python", "main.py", "--run_workflows"]
+
+  viz:
+    build: .
+    volumes:
+      - ./output:/usr/src/app/output
+    environment:
+      - INPUT_DIR=/usr/src/app/tests/data
+      - OUTPUT_DIR=/usr/src/app/output
+    command: ["python", "main.py", "--visualize_workflows"]
+  
+  shell:
+    build: .
+    volumes:
+      - ./output:/usr/src/app/output
+    environment:
+      - INPUT_DIR=/usr/src/app/tests/data
+      - OUTPUT_DIR=/usr/src/app/output
+    stdin_open: true
+    tty: true
+    command: ["/bin/bash"]
+  
   tests:
     build: .
     volumes:

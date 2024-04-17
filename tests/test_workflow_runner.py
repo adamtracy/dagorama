@@ -2,8 +2,8 @@ import json
 import pytest
 from pathlib import Path
 
-from dagorama.io import parse_graph, OrphanNodeError, NoRootError, MoreThanOneRootError
-from dagorama.workflow_runnner import run_node
+from app.io import parse_graph, OrphanNodeError, NoRootError, MoreThanOneRootError
+from app.workflow_runnner import run_node
 
 
 # Fixtures loading test data
