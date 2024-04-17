@@ -32,7 +32,7 @@ def run_node(node: Node) -> None:
 
 
 def run_workflows() -> None:
-    logging.info("Starting to process files: {INPUT_DIR}")
+    logging.info(f"Starting to process files: {INPUT_DIR}")
     for file_name in os.listdir(INPUT_DIR):
         file_path = os.path.join(INPUT_DIR, file_name)
         if file_path.endswith(".json"):
