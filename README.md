@@ -32,7 +32,7 @@ graph where A is the start vertex:
 ├── docs
 ├── install.sh
 ├── main.py  # Command line entrypoint into the system for running the workflows
-├── output
+├── output # where output is dumped.  for now, it's just .pngs generated via graphviz
 ├── pyproject.toml
 └── tests  # test cases using pytest
 ```
