@@ -57,5 +57,4 @@ docker-compose up viz --build  # Builds the appliation and creates .png graphs i
 ```
 ## And if nothing else, watch it run on my system (-:
 
-
-![console output](docs/console.gif)
+<img src="docs/console.gif" width="700" alt="Console output">
