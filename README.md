@@ -55,4 +55,7 @@ docker-compose up app --build  # Builds the appliation and runs app/workflow_run
 docker-compose up viz --build  # Builds the appliation and creates .png graphs in ./output from tests/data/*json
 
 ```
+## And if nothing else, watch it run on my system (-:
 
+
+![console output](docs/console.gif)
