@@ -23,7 +23,7 @@ graph where A is the start vertex:
 ├── Dockerfile 
 ├── Makefile   # Supports local or Docker driven install
 ├── README.md
-├── dagorama
+├── app
 │   ├── __init__.py
 │   ├── io.py  # File parsing, graph rendering
 │   ├── model.py  # Node, Edge, Graph data models
