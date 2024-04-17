@@ -16,7 +16,7 @@ services:
     environment:
       - INPUT_DIR=/usr/src/app/tests/data
       - OUTPUT_DIR=/usr/src/app/output
-    command: ["python", "main.py", "--visualize_workflows"]
+    command: ["python", "main.py", "--viz_graphs"]
   
   shell:
     build: .

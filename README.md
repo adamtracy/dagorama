@@ -37,19 +37,22 @@ graph where A is the start vertex:
 └── tests  # test cases using pytest
 ```
 ## Installation, running
-
-There are 2 ways to install this project
+The  workflow runner is run in `app.workflow_runner.run_workflows()`.
+There are 2 ways to install this project and invoke the runner
 ### Locally
 For systems set up for development already having `python3` and `make` build tools.  This is driven by a minimally configured `Makefile` that will build a VE in `./venv`.  This was handy for me to quickly get going.
 ```bash
 make test-local;
-make run-local;
+make run-local; # runs the app/workflow_runner.py
+make viz-local; # provided you installed graphviz on your system already, creates .png graphs in ./output from tests/data/*json
 make clean # removes all installed goods
 ```
 ### Docker
 For systems having a docker service installed and runnning.  While Docker sounds like overkill for this exercise, I do think it's helpful to have productionized deployment in mind from the start of a new project. It eases collaboration among devs and enables CI/CD
 ```bash
 docker-compose up tests --build  # Builds the appliation and runs tests defined in ./tests
-docker-compose up app --build  # Builds the appliation and runs the main.py
+docker-compose up app --build  # Builds the appliation and runs app/workflow_runner.py
+docker-compose up viz --build  # Builds the appliation and creates .png graphs in ./output from tests/data/*json
+
 ```
 
