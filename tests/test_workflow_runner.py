@@ -2,7 +2,7 @@ import json
 import pytest
 from pathlib import Path
 
-from app.io import parse_graph, OrphanNodeError, NoRootError, MoreThanOneRootError
+from app.io import parse_graph, CycleDetectedError, OrphanNodeError, NoRootError, MoreThanOneRootError
 from app.workflow_runnner import run_node
 
 
@@ -56,5 +56,12 @@ def test_more_than_one_root():
     # test that a graph with more than one root raises an exception
     with pytest.raises(MoreThanOneRootError):
         data_path = Path(__file__).parent / "data" / "error_conditions" / "2_root.json"
+        with open(data_path, "r") as file:
+            parse_graph(json.load(file))
+
+def test_cycle_detected():
+    # test that a graph with a cycle raises an exception
+    with pytest.raises(CycleDetectedError):
+        data_path = Path(__file__).parent / "data" / "error_conditions" / "looped.json"
         with open(data_path, "r") as file:
             parse_graph(json.load(file))
