@@ -18,6 +18,9 @@ class MoreThanOneRootError(Exception):
 class OrphanNodeError(Exception):
     pass
 
+class CycleDetectedError(Exception):
+    pass
+
 
 def parse_graph(raw_data: dict) -> Graph:
     graph = Graph()
@@ -39,6 +42,9 @@ def parse_graph(raw_data: dict) -> Graph:
         for node in graph.nodes.values():
             if not node.is_root and not node.edges_in:
                 raise OrphanNodeError(f"Node {node.id} has no incoming edges.")
+        loop_detected_node = graph.find_loop()
+        if loop_detected_node:
+            raise CycleDetectedError(f"There is a cycle in the graph at node {loop_detected_node.id}.")
     return graph
 
 

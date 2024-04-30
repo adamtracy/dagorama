@@ -15,7 +15,7 @@ class Node:
     def is_root(self):
         return self.is_root
 
-
+            
 class Edge:
     def __init__(self, source: Node, destination: Node, weight: int = 1):
         self.source = source
@@ -54,3 +54,21 @@ class Graph:
 
     def get_node(self, id: str) -> Node:
         return self.nodes.get(id)
+
+    def find_loop(self) -> Node:
+        """If there is a loop in the graph, return where it originates from."""
+
+        # use a input set to keep track of visited nodes.  if any destination edges are already 
+        # in the set, we have a loop
+        visited = set()
+        def find_loop(node):
+            if node in visited:
+                return node
+            visited.add(node)
+            for edge in node.edges_out:
+                if find_loop(edge.destination):
+                    return edge.destination
+            visited.remove(node)
+            return None
+        return find_loop(self.root)
+    
