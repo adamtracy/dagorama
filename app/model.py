@@ -57,6 +57,9 @@ class Graph:
 
     def find_loop(self) -> Node:
         """If there is a loop in the graph, return where it originates from."""
+
+        # use a input set to keep track of visited nodes.  if any destination edges are already 
+        # in the set, we have a loop
         visited = set()
         def find_loop(node):
             if node in visited:
